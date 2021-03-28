@@ -1,3 +1,6 @@
+To Create Database:
+_________________
+
 USE [master]
 
 CREATE DATABASE [EstagramDB]
