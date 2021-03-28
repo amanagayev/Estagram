@@ -34,3 +34,15 @@
 .btn-outline-info:focus {
     box-shadow: none !important;
 }
+
+.containerContent {
+   
+}
+
+.table {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.usernameComment {
+    color: blue;
+}
