@@ -1,0 +1,36 @@
+﻿body {
+}
+
+#logo {
+    font-family: 'Lucida Handwriting', sans-serif;
+    font-size: 5vw;
+    text-align: center;
+}
+
+.newsfeedRow {
+    place-content: center;
+    text-align: left;
+}
+
+.newsfeed {
+    background: #fafafa;
+    text-align: center;
+}
+
+.btn-outline-danger:hover {
+    color: #dc3545 !important;
+    background-color: #fff !important;
+}
+
+.btn-outline-danger:focus {
+    box-shadow: none !important;
+}
+
+.btn-outline-info:hover {
+    color: #17a2b8 !important;
+    background-color: #fff !important;
+}
+
+.btn-outline-info:focus {
+    box-shadow: none !important;
+}
