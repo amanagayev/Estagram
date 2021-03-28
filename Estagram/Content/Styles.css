@@ -5,6 +5,8 @@
     font-family: 'Lucida Handwriting', sans-serif;
     font-size: 5vw;
     text-align: center;
+    z-index: 1;
+    background: #fff;
 }
 
 .newsfeedRow {
