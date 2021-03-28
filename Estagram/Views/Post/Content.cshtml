@@ -11,10 +11,10 @@
 </head>
 <body>
     <div class="container containerContent">
-        <div class="row rowContent">
-            <div class="content col-8 col-8 col-sm-8 col-md-8 col-lg-8">
+        <div class="row contentRow">
+            <div class="content col-12 col-sm-12 col-md-6 col-lg-5">
                 <div>
-                    <img src="~/pics/sq-1.jpg" alt="post" class="" width="60%" />
+                    <img src="~/pics/sq-1.jpg" alt="post" class="" width="100%" />
                 </div>
                 <div class="mt-1">
                     <p>cute dog</p>
@@ -36,17 +36,33 @@
                     </button>
                 </div>
             </div>
-            <div class="content col-4 col-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="content col-12 col-sm-12 col-md-6 col-lg-4">
                 <table class="table">
                     <tbody>
                         <tr>
                             <td><span class="usernameComment">jondoe</span> the cutest little thing</td>
                         </tr>
                         <tr>
-                            <td>username</td>
+                            <td>
+                                <div class="input-group">
+                                    <span>
+                                        <input type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="button-addon2">
+                                    </span>
+                                    
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td>comment</td>
+                            <td>
+                                <div class="input-group">
+                                    <span>
+                                        <input type="text" class="form-control" placeholder="Comment" aria-label="comment" aria-describedby="button-addon2">
+                                    </span>
+                                    <span class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+                                    </span>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

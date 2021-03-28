@@ -19,6 +19,10 @@
     text-align: center;
 }
 
+.contentRow {
+    justify-content: center;
+}
+
 .btn-outline-danger:hover {
     color: #dc3545 !important;
     background-color: #fff !important;
@@ -47,4 +51,12 @@
 
 .usernameComment {
     color: blue;
+}
+
+.form-control {
+    border: none !important;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
 }
