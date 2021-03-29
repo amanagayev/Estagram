@@ -17,5 +17,11 @@ namespace Estagram.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult PostAdd(string name, string opinion)
+        {
+
+        }
     }
 }
