@@ -12,5 +12,10 @@ namespace Estagram.Controllers
         {
             return View();
         }
+
+        public ActionResult CreateNew()
+        {
+            return View();
+        }
     }
 }

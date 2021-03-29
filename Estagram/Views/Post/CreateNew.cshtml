@@ -1,0 +1,37 @@
+﻿<section id="newPost">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Name</label><br />
+        <input type="text" class="form-control1" id="name">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Opinion</label><br />
+        <input type="text" class="form-control1" id="opinion">
+    </div>
+    <button id="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group">
+        <div id="result"></div>
+    </div>
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            var name = $("#name").val();
+            var opinion = $("#opinion").val();
+            $.ajax({
+                url: "PostAdd",
+                type: "post",
+                data: "name=" + name + "&opinion=" + opinion,
+                success: function (result) {
+                    if (result == 1) {
+                        $("#newPost").hide();
+                        $("#result").html('<div class="alert alert-success" role="alert">Posted successfully</div>');
+                    } else {
+                        $("#result").html('<div class="alert alert-success" role="alert">Error</div>')
+                    }
+                }
+            });
+        });
+    });
+</script>
