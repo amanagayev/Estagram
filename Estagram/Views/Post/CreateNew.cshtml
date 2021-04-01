@@ -15,23 +15,21 @@
 
 
 <script>
-    $(document).ready(function () {
-        $("#submit").click(function () {
-            var name = $("#name").val();
-            var opinion = $("#opinion").val();
-            $.ajax({
-                url: "PostAdd",
-                type: "post",
-                data: "name=" + name + "&opinion=" + opinion,
-                success: function (result) {
-                    if (result == 1) {
-                        $("#newPost").hide();
-                        $("#result").html('<div class="alert alert-success" role="alert">Posted successfully</div>');
-                    } else {
-                        $("#result").html('<div class="alert alert-success" role="alert">Error</div>')
-                    }
+    $("#submit").click(function () {
+        var name = $("#name").val();
+        var opinion = $("#opinion").val();
+        $.ajax({
+            url: "PostAdd",
+            type: "post",
+            data: "name=" + name + "&opinion=" + opinion,
+            success: function (result) {
+                if (result == "PostAdd 1") {
+                    $("#newPost").hide();
+                    $("#result").html('<div class="alert alert-success" role="alert">Posted successfully</div>');
+                } else {
+                    $("#result").html('<div class="alert alert-success" role="alert">Error</div>')
                 }
-            });
+            }
         });
     });
 </script>

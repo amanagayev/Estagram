@@ -1,73 +1,148 @@
 ﻿@{
-    
+
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
     <div class="container containerContent">
         <div class="row contentRow">
             <div class="content col-12 col-sm-12 col-md-6 col-lg-5">
+                @{ 
+                    Estagram.Models.DbModel db = new Estagram.Models.DbModel();
+                    int id = int.Parse(Request.QueryString["id"]);
+                    List<Estagram.Models.Post> posts = db.Posts.SqlQuery("SELECT * FROM Posts where id=" + id).ToList();
+                }
                 <div>
-                    <img src="~/pics/sq-1.jpg" alt="post" class="" width="100%" />
+                    <img src="" alt="@posts[0].picture" class="" width="100%" />
                 </div>
                 <div class="mt-1">
-                    <p>cute dog</p>
+                    <p>@posts[0].description</p>
                 </div>
+                @{ 
+                    List<Estagram.Models.Like> like = db.Likes.SqlQuery("SELECT * FROM Likes WHERE post_id=" + id).ToList();
+                    List<Estagram.Models.Comment> comments = db.Comments.SqlQuery("SELECT * FROM Comments where post_id=" + id).ToList();
+                    var postLike = 0;
+                    if(like.Count > 0)
+                    {
+                        postLike = like[0].likes;
+                    }
+                }
                 <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm mr-1">
+                    <button type="button" class="btn btn-outline-danger btn-sm mr-1" onclick="likePost(@postLike)">
                         <span class="pl-3 pr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                            </svg> 5
+                            </svg> @postLike
                         </span>
                     </button>
                     <button type="button" class="btn btn-outline-info btn-sm ml-1">
                         <span class="pl-3 pr-3">
                             <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
                                 <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                            </svg> 2
+                            </svg> @comments.Count
+                        </span>
+                    </button>
+                    <button type="button" class="btn btn-outline-warning btn-sm-12 ml-1" onclick="postDelete(@id, @like[0].id)">
+                        <span class="pl-3 pr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
+                            </svg> D
                         </span>
                     </button>
                 </div>
             </div>
             <div class="content col-12 col-sm-12 col-md-6 col-lg-4">
-                <table class="table">
+                <table class="table table-sm">
                     <tbody>
-                        <tr>
-                            <td><span class="usernameComment">jondoe</span> the cutest little thing</td>
-                        </tr>
+                        @{
+                                foreach (var comment in comments)
+                                {
+                                <tr id="commentDelete-@comment.id">
+                                    <td><span class="usernameComment">@comment.username </span>@comment.comment1<button class="btn btn-outline-danger btn-sm float-right" type="button" onclick="commentdelete(@comment.id)">Delete</button></td>
+                                </tr>
+                                <tr><div id="commentIfNotDelete-@comment.id"></div></tr>
+                            }
+                        }
                         <tr>
                             <td>
-                                <div class="input-group">
+                                <div class="">
                                     <span>
-                                        <input type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="button-addon2">
+                                        <input type="text" class="form-control" id="username" placeholder="Username">
                                     </span>
-                                    
+
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="input-group">
+                                <div class="">
                                     <span>
-                                        <input type="text" class="form-control" placeholder="Comment" aria-label="comment" aria-describedby="button-addon2">
-                                    </span>
-                                    <span class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+                                        <input type="text" class="form-control" id="comment" placeholder="Comment">
                                     </span>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="input-group ml-3">
+                    <button class="btn btn-outline-primary" type="button" id="commentAdd">Add</button>
+                </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+
+<script>
+    var postId = @id;
+    $("#commentAdd").click(function () {
+        var username = $("#username").val();
+        var comment = $("#comment").val();
+        $.ajax({
+            url: "CommentAdd",
+            type: "post",
+            data: "post_id=" + postId + "&username=" + username + "&comment=" + comment,
+            success: function (result) {
+                if (result == 1) {
+                    location.reload();
+                } else {
+                    $("#ifNotSuccess").html('<div class="alert alert-danger" role="alert">Comment couldn"t add</div>');
+                }
+            }
+        });
+    });
+
+    function commentdelete(id) {
+        $.ajax({
+            url: "CommentDelete",
+            type: "post",
+            data: "comment_id=" + id,
+            success: function (result) {
+            if (result == 1) {
+                location.reload();
+            } else {
+                $("#commentIfNotDelete-" + id).html('<div class="alert alert-danger" role="alert">Comment couldn"t delete</div>');
+            }
+            }
+        });
+    }
+
+    function likePost(args) {
+        var count_like = args + 1;
+        $.ajax({
+            url: "LikeUpdate",
+            type: "post",
+            data: "post_id=" + postId + "&count_like=" + count_like,
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+
+    function postDelete(postID, likeID) {
+        $.ajax({
+            url: "PostDelete",
+            type: "post",
+            data: "postID=" + postID + "&likeID=" + likeID,
+            success: function (result) {
+                alert(result);
+            }
+        });
+    }
+</script>

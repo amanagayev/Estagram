@@ -77,3 +77,7 @@ L:\Estagram\Estagram\obj\Debug\Estagram.csproj.CoreCompileInputs.cache
 L:\Estagram\Estagram\obj\Debug\Estagram.csproj.CopyComplete
 L:\Estagram\Estagram\obj\Debug\Estagram.dll
 L:\Estagram\Estagram\obj\Debug\Estagram.pdb
+L:\Estagram\Estagram\bin\EntityFramework.dll
+L:\Estagram\Estagram\bin\EntityFramework.SqlServer.dll
+L:\Estagram\Estagram\bin\EntityFramework.xml
+L:\Estagram\Estagram\bin\EntityFramework.SqlServer.xml

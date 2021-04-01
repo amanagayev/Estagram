@@ -4,11 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="40f9605b7056438995d154146d78ac67" Name="Diagram1">
-        <EntityTypeShape EntityType="Estagram.Comment" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Estagram.Post" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Estagram.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="Estagram.FK_Comments_Posts" ManuallyRouted="false" />
+      <Diagram DiagramId="671eb60c353a4e4ebff7f4219989f8df" Name="Diagram1">
+        <EntityTypeShape EntityType="EstagramDBModel.Like" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EstagramDBModel.Post" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EstagramDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="EstagramDBModel.FK_Likes_Posts" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EstagramDBModel.Comment" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="EstagramDBModel.FK_Comments_Posts" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
