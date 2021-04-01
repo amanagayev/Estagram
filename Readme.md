@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[Comments](
 	[id] [int] IDENTITY(1,1) PRIMARY KEY,
 	[post_id] [int] NOT NULL,
 	[username] [nchar](30) NOT NULL,
-	[comment] [nvarchar](max) NOT NULL
+	[comment1] [nvarchar](max) NOT NULL
 )
 
 CREATE TABLE [dbo].[Likes](
@@ -31,4 +31,4 @@ CREATE TABLE [dbo].[Likes](
 	[likes] [int] DEFAULT 0 NOT NULL
 )
 
-![EstagramDB - Diagram_0 SSMS](https://user-images.githubusercontent.com/59646712/112737352-07cbc700-8f6b-11eb-991e-23dcefe229b6.png)
+![db](https://user-images.githubusercontent.com/59646712/113355691-d297ee00-9349-11eb-9f26-13599e174c49.png)
