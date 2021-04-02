@@ -26,7 +26,7 @@
                     }
                 }
                 <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm mr-1" onclick="likePost(@postLike)">
+                    <button type="button" class="btn btn-outline-danger btn-sm mr-1" onclick="likeUpdate(@postLike)">
                         <span class="pl-3 pr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
@@ -123,12 +123,12 @@
         });
     }
 
-    function likePost(args) {
-        var count_like = args + 1;
+    function likeUpdate(args) {
+        var countLike = args + 1;
         $.ajax({
             url: "LikeUpdate",
             type: "post",
-            data: "post_id=" + postId + "&count_like=" + count_like,
+            data: "post_id=" + postId + "&count_like=" + countLike,
             success: function () {
                 location.reload();
             }

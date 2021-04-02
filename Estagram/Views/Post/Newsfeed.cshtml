@@ -30,214 +30,51 @@
                             <img src="" alt="@item.picture" class="" width="100%" />
                         </a>
                         <p class="text-truncate mt-1">@item.description</p>
-                        <button type="button" class="btn btn-outline-danger btn-sm mr-1" id="likeButtonf">
+                        <button type="button" class="btn btn-outline-danger btn-sm mr-1" id="likeButton" onclick="likeUpdate(@item.id, @postlike)">
                             <span class="pl-3 pr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                                 </svg> @postlike
                             </span>
                         </button>
-                        <button type="button" class="btn btn-outline-info btn-sm ml-1">
+                        <button type="button" class="btn btn-outline-info btn-sm ml-1" onclick="redirectToContent(@item.id)">
                             <span class="pl-3 pr-3">
                                 <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
                                     <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
                                 </svg> @comments.Count
                             </span>
                         </button>
-                        <input type="hidden" 
                     </div>
                 }
             }
-            <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                <a href="~/Post/Content">
-                    <img src="~/pics/sq-1.jpg" alt="post" class="" width="100%" />
-                </a>
-                <p class="text-truncate mt-1">cute dog</p>
-                <button type="button" class="btn btn-outline-danger btn-sm mr-1" id="likeButton">
-                    <span class="pl-3 pr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> 5
-                    </span>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                    <span class="pl-3 pr-3">
-                        <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                        </svg> 2
-                    </span>
-                </button>
-            </div>
-
-            <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                <a href="~/Post/Content">
-                    <img src="~/pics/sq-2.jpg" alt="post" class="" width="100%" />
-                </a>
-                <p class="text-truncate mt-1">#snow</p>
-                <button type="button" class="btn btn-outline-danger btn-sm mr-1">
-                    <span class="pl-3 pr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> 5
-                    </span>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                    <span class="pl-3 pr-3">
-                        <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                        </svg> 2
-                    </span>
-                </button>
-            </div>
-
-            <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                <a href="~/Post/Content">
-                    <img src="~/pics/sq-1.jpg" alt="post" class="" width="100%" />
-                </a>
-                <p class="text-truncate mt-1">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia volu</p>
-                <button type="button" class="btn btn-outline-danger btn-sm mr-1">
-                    <span class="pl-3 pr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> 5
-                    </span>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                    <span class="pl-3 pr-3">
-                        <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                        </svg> 2
-                    </span>
-                </button>
-            </div>
-
-            <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                <a href="~/Post/Content">
-                    <img src="~/pics/sq-1.jpg" alt="post" class="" width="100%" />
-                </a>
-                <p class="text-truncate mt-1">cute dog</p>
-                <button type="button" class="btn btn-outline-danger btn-sm mr-1">
-                    <span class="pl-3 pr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> 5
-                    </span>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                    <span class="pl-3 pr-3">
-                        <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                        </svg> 2
-                    </span>
-                </button>
-            </div>
-
-            <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                <a href="~/Post/Content">
-                    <img src="~/pics/sq-2.jpg" alt="post" class="" width="100%" />
-                </a>
-                <p class="text-truncate mt-1">#snow</p>
-                <button type="button" class="btn btn-outline-danger btn-sm mr-1">
-                    <span class="pl-3 pr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> 5
-                    </span>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                    <span class="pl-3 pr-3">
-                        <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                        </svg> 2
-                    </span>
-                </button>
-            </div>
-
-            <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                <a href="~/Post/Content">
-                    <img src="~/pics/sq-1.jpg" alt="post" class="" width="100%" />
-                </a>
-                <p class="text-truncate mt-1">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia volu</p>
-                <button type="button" class="btn btn-outline-danger btn-sm mr-1">
-                    <span class="pl-3 pr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> 5
-                    </span>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                    <span class="pl-3 pr-3">
-                        <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                        </svg> 2
-                    </span>
-                </button>
-            </div>
-
-            <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                <a href="~/Post/Content">
-                    <img src="~/pics/sq-1.jpg" alt="post" class="" width="100%" />
-                </a>
-                <p class="text-truncate mt-1">cute dog</p>
-                <button type="button" class="btn btn-outline-danger btn-sm mr-1">
-                    <span class="pl-3 pr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> 5
-                    </span>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                    <span class="pl-3 pr-3">
-                        <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                        </svg> 2
-                    </span>
-                </button>
-            </div>
-
-            <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                <a href="~/Post/Content">
-                    <img src="~/pics/sq-2.jpg" alt="post" class="" width="100%" />
-                </a>
-                <p class="text-truncate mt-1">#snow</p>
-                <button type="button" class="btn btn-outline-danger btn-sm mr-1">
-                    <span class="pl-3 pr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> 5
-                    </span>
-                </button>
-                <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                    <span class="pl-3 pr-3">
-                        <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                        </svg> 2
-                    </span>
-                </button>
-            </div>
+            
         </div>
-        <a href="~/Post/CreateNew">Create New Post</a>
-        <button type="button" class="btn btn-primary">Post sth</button>
+        <button type="button" class="btn btn-primary" onclick="createNew()">Create New</button>
     </div>
 </body>
 </html>
 
 <script>
-    $("#likeButtonf").click(function () {
-        var postId = 1;
-        var countLike = 7;
+    function likeUpdate2(postID, like) {
+        var countLike = like + 1;
         $.ajax({
             url: "LikeUpdate",
             type: "post",
-            data: "post_id=" + postId + "&count_like=" + countLike,
+            data: "post_id=" + postID + "&count_like=" + countLike,
             success: function (result) {
-                alert(result);
-                @*if (result == 1) {
-                    alert("like up");
-                } else {
-                    alert("error like");
-                }*@
+                location.reload();
             }
         });
-    });
+    }
+    function likeUpdate(postID, like) {
+        alert(postID + ', ' + like);
+    }
+
+    function redirectToContent(id) {
+        location.replace("/Post/Content?id=" + id);
+    }
+
+    function createNew() {
+        location.replace("/Post/CreateNew");
+    }
 </script>
