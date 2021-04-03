@@ -9,6 +9,7 @@
                     Estagram.Models.DbModel db = new Estagram.Models.DbModel();
                     int id = int.Parse(Request.QueryString["id"]);
                     List<Estagram.Models.Post> posts = db.Posts.SqlQuery("SELECT * FROM Posts where id=" + id).ToList();
+                    List<Estagram.Models.Comment> comments = db.Comments.SqlQuery("SELECT * FROM Comments where post_id=" + id).ToList();
                 }
                 <div>
                     <img src="" alt="@posts[0].picture" class="" width="100%" />
@@ -16,38 +17,14 @@
                 <div class="mt-1">
                     <p>@posts[0].description</p>
                 </div>
-                @{ 
-                    List<Estagram.Models.Like> like = db.Likes.SqlQuery("SELECT * FROM Likes WHERE post_id=" + id).ToList();
-                    List<Estagram.Models.Comment> comments = db.Comments.SqlQuery("SELECT * FROM Comments where post_id=" + id).ToList();
-                    var postLike = 0;
-                    if(like.Count > 0)
-                    {
-                        postLike = like[0].likes;
-                    }
-                }
                 <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm mr-1" onclick="likeUpdate(@postLike)">
+                    <button type="button" class="btn btn-outline-warning btn-sm-12 ml-1" onclick="postDelete(@id)">
                         <span class="pl-3 pr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                            </svg> @postLike
-                        </span>
-                    </button>
-                    <button type="button" class="btn btn-outline-info btn-sm ml-1">
-                        <span class="pl-3 pr-3">
-                            <svg style="transform: scaleX(-1);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                            </svg> @comments.Count
-                        </span>
-                    </button>
-                    <button type="button" class="btn btn-outline-warning btn-sm-12 ml-1" onclick="postDelete(@id, @like[0].id)">
-                        <span class="pl-3 pr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                            </svg> D
+                            Delete Post
                         </span>
                     </button>
                 </div>
+                <div id="postIfNotDelete"></div>
             </div>
             <div class="content col-12 col-sm-12 col-md-6 col-lg-4">
                 <table class="table table-sm">
@@ -123,25 +100,18 @@
         });
     }
 
-    function likeUpdate(args) {
-        var countLike = args + 1;
-        $.ajax({
-            url: "LikeUpdate",
-            type: "post",
-            data: "post_id=" + postId + "&count_like=" + countLike,
-            success: function () {
-                location.reload();
-            }
-        });
-    }
-
-    function postDelete(postID, likeID) {
+    function postDelete(postID) {
         $.ajax({
             url: "PostDelete",
             type: "post",
-            data: "postID=" + postID + "&likeID=" + likeID,
+            data: "postID=" + postID,
             success: function (result) {
-                alert(result);
+                if (result == 1) {
+                    location.replace("/");
+                } else {
+                    $("#postIfNotDelete").html('<div class="alert alert-danger" role="alert">Post couldn"t delete</div>');
+                }
+                
             }
         });
     }

@@ -1,11 +1,11 @@
 ﻿<section id="newPost">
     <div class="form-group">
-        <label for="exampleInputEmail1">Name</label><br />
-        <input type="text" class="form-control1" id="name">
+        <label for="urlPhoto">Link of photo:</label><br />
+        <input type="text" class="form-control1" id="urlPhoto">
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Opinion</label><br />
-        <input type="text" class="form-control1" id="opinion">
+        <label for="description">Description</label><br />
+        <input type="text" class="form-control1" id="description">
     </div>
     <button id="submit" class="btn btn-primary">Submit</button>
     <div class="form-group">
@@ -16,16 +16,15 @@
 
 <script>
     $("#submit").click(function () {
-        var name = $("#name").val();
-        var opinion = $("#opinion").val();
+        var urlPhoto = $("#urlPhoto").val();
+        var description = $("#description").val();
         $.ajax({
             url: "PostAdd",
             type: "post",
-            data: "name=" + name + "&opinion=" + opinion,
+            data: "url_photo=" + urlPhoto + "&description=" + description,
             success: function (result) {
-                if (result == "PostAdd 1") {
-                    $("#newPost").hide();
-                    $("#result").html('<div class="alert alert-success" role="alert">Posted successfully</div>');
+                if (result == "1") {
+                    location.replace("/");
                 } else {
                     $("#result").html('<div class="alert alert-success" role="alert">Error</div>')
                 }

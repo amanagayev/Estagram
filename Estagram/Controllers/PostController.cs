@@ -27,19 +27,19 @@ namespace Estagram.Controllers
         }
 
         [HttpPost]
-        public ActionResult PostAdd(string name, string opinion)
+        public ActionResult PostAdd(string url_photo, string description)
         {
             Post pt = new Post();
-            pt.picture = name;
-            pt.description = opinion;
+            pt.picture = url_photo;
+            pt.description = description;
 
             db.Posts.Add(pt);
             if(db.SaveChanges() > 0)
             {
-                return Content("PostAdd 1");
+                return Content("1");
             } else
             {
-                return Content("PostAdd 0");
+                return Content("0");
             }
         }
 
@@ -111,10 +111,10 @@ namespace Estagram.Controllers
         }
 
         [HttpPost]
-        public ActionResult PostDelete(int postID, int likeID)
+        public ActionResult PostDelete(int postID)
         {
             Post post = db.Posts.Find(postID);
-            Like like = db.Likes.Find(likeID);
+            List<Like> like = db.Likes.SqlQuery("SELECT * FROM Likes WHERE post_id=" + postID).ToList();
             List<Comment> comment = db.Comments.SqlQuery("SELECT * FROM Comments WHERE post_id=" + postID).ToList();
 
             for (var i = 0; i < comment.Count; i++)
@@ -122,10 +122,20 @@ namespace Estagram.Controllers
                 db.Comments.Remove(comment[i]);
 
             }
-            db.Likes.Remove(like);
+            if(like.Count > 0)
+            {
+                db.Likes.Remove(like[0]);
+            }
             db.Posts.Remove(post);
-            db.SaveChanges();
-            return RedirectToRoute("~/Post/Newsfeed");
+
+            if (db.SaveChanges() > 0)
+            {
+                return Content("1");
+            }
+            else
+            {
+                return Content("0");
+            }
         }
     }
 }
