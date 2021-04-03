@@ -26,9 +26,9 @@
                     }
 
                         <div class="newsfeed col col-12 col-sm-6 col-md-4 col-lg-3 p-3 m-3">
-                            <a href="~/Post/Content?id=@item.id">
-                                <img src="https://unsplash.com/photos/EE-4zQPP1V4" alt="photo" class="" width="100%" />
-                            </a>
+                            <div onclick="redirectToContent(@item.id)">
+                                <img class="" src="@item.picture" alt="photo" width="200" height="200" />
+                            </div>
                             <p class="text-truncate mt-1">@item.description</p>
                             <button type="button" class="btn btn-outline-danger btn-sm mr-1" id="likeButton" onclick="likeUpdate(@item.id, @postlike)">
                                 <span class="pl-3 pr-3">

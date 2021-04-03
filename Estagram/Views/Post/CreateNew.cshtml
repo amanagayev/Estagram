@@ -1,15 +1,15 @@
-﻿<section id="newPost">
+﻿<section id="newPost" class="text-center mt-5">
     <div class="form-group">
         <label for="urlPhoto">Link of photo:</label><br />
         <input type="text" class="form-control1" id="urlPhoto">
     </div>
     <div class="form-group">
-        <label for="description">Description</label><br />
+        <label for="description">Description:</label><br />
         <input type="text" class="form-control1" id="description">
     </div>
     <button id="submit" class="btn btn-primary">Submit</button>
     <div class="form-group">
-        <div id="result"></div>
+        <div id="ifError"></div>
     </div>
 </section>
 
@@ -26,7 +26,7 @@
                 if (result == "1") {
                     location.replace("/");
                 } else {
-                    $("#result").html('<div class="alert alert-success" role="alert">Error</div>')
+                    $("#ifError").html('<div class="alert alert-success" role="alert">Error</div>')
                 }
             }
         });
