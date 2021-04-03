@@ -64,7 +64,6 @@ namespace Estagram.Controllers
         [HttpPost]
         public ActionResult LikeUpdate(int post_id, int count_like)
         {
-            // Look this method later
             List<Like> lk = db.Likes.SqlQuery("SELECT * FROM LIKES WHERE post_id=" + post_id).ToList();
 
             if (lk.Count > 0)
@@ -113,6 +112,7 @@ namespace Estagram.Controllers
         [HttpPost]
         public ActionResult PostDelete(int postID)
         {
+            // Delete post, like, comment
             Post post = db.Posts.Find(postID);
             List<Like> like = db.Likes.SqlQuery("SELECT * FROM Likes WHERE post_id=" + postID).ToList();
             List<Comment> comment = db.Comments.SqlQuery("SELECT * FROM Comments WHERE post_id=" + postID).ToList();
