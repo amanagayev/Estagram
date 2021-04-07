@@ -14,8 +14,7 @@ _________________
 CREATE TABLE [dbo].[Posts](
 	[id] [int] IDENTITY(1,1) PRIMARY KEY,
 	[picture] [text] NOT NULL,
-	[description] [nvarchar](max) NULL,
-	[url] [text] NOT NULL
+	[description] [nvarchar](max) NULL
 )
 
 CREATE TABLE [dbo].[Comments](
