@@ -1,28 +1,34 @@
 ﻿<section id="newPost" class="text-center mt-5">
-    <div class="form-group">
-        <label for="urlPhoto">Link of photo:</label><br />
-        <input type="text" class="form-control1" id="urlPhoto">
-    </div>
-    <div class="form-group">
-        <label for="description">Description:</label><br />
-        <input type="text" class="form-control1" id="description">
-    </div>
-    <button id="submit" class="btn btn-primary">Submit</button>
-    <div class="form-group">
-        <div id="ifError"></div>
-    </div>
+    <form id="form" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">Choose photo:</label><br />
+            <input type="file" name="file" class="form-control1" id="file">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label><br />
+            <input type="text" name="description" class="form-control1" id="description">
+        </div>
+        <button id="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <div id="ifError"></div>
+        </div>
+    </form>
 </section>
 
 
 <script>
     $("#submit").click(function () {
-        var urlPhoto = $("#urlPhoto").val();
-        var description = $("#description").val();
+        var formData = new FormData($("#form")[0]);
+        formData.append("image", $("input[type=file]")[0].files[0]);
+
         $.ajax({
             url: "PostAdd",
             type: "post",
-            data: "url_photo=" + urlPhoto + "&description=" + description,
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function (result) {
+                alert('result');
                 if (result == "1") {
                     location.replace("/");
                 } else {

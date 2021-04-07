@@ -5,11 +5,11 @@
                 @{
                     Estagram.Models.DbModel db = new Estagram.Models.DbModel();
                     int id = int.Parse(Request.QueryString["id"]);
-                    List<Estagram.Models.Post> posts = db.Posts.SqlQuery("SELECT * FROM Posts where id=" + id).ToList();
+                    List<Estagram.Models.Post> posts = db.Posts.SqlQuery("SELECT * FROM Posts WHERE id=" + id).ToList();
                     List<Estagram.Models.Comment> comments = db.Comments.SqlQuery("SELECT * FROM Comments where post_id=" + id).ToList();
                 }
                 <div>
-                    <img src="@posts[0].picture" alt="Photo" class="" width="100%" height="400" />
+                    <img src="~/Uploads/@posts[0].picture" alt="Photo" class="" width="100%" height="400" />
                 </div>
                 <div class="mt-1">
                     <p>@posts[0].description</p>

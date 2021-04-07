@@ -1,6 +1,7 @@
 ﻿using Estagram.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,11 +28,27 @@ namespace Estagram.Controllers
         }
 
         [HttpPost]
-        public ActionResult PostAdd(string url_photo, string description)
+        public ActionResult PostAdd(HttpPostedFileBase file, string url_photo, string description)
         {
             Post pt = new Post();
-            pt.picture = url_photo;
+            /*pt.picture = url_photo;*/
             pt.description = description;
+
+            if(file != null && file.ContentLength > 0)
+            {
+                try
+                {
+                    var unixTimestamp = DateTimeOffset.Now.ToUnixTimeSeconds(); // if upload images with same name
+                    string path = Path.Combine(Server.MapPath("~/Uploads"),
+                        Path.GetFileName(unixTimestamp + "-" + file.FileName));
+
+                    file.SaveAs(path);
+                    pt.picture = unixTimestamp + "-" + file.FileName;
+                } catch (Exception ex)
+                {
+
+                }
+            }
 
             db.Posts.Add(pt);
             if(db.SaveChanges() > 0)
